@@ -5,9 +5,9 @@
     padding: 10px;
 }
 #Logo{
-    width: 100%;
     display: flex;
     align-self: center;
+    width: 100%;
 }
 #nav-cart{
     background-color: green;
@@ -18,12 +18,22 @@
     justify-content: space-around;
 
 }
+#nav-cart:hover{
+    background-color: rgb(54, 179, 54);
+
+}
 @media screen and (max-width: 850px) {
 
     #nav-bar-cart{
         display: none;
     }
 }
-.link,.link:link ,.link:focus, .link:hover{
+.link,.link:link ,.link:focus{
     text-decoration: none;
-      color: inherit;}
+      color: #b8b6b4;}
+.link:hover{
+    text-decoration: none;
+
+    color:white
+}
+

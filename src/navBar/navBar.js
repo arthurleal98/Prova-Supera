@@ -4,12 +4,14 @@ import cart from '../assets/shopping-cart.png';
 const NavBar = (props) =>{
     const styleNav={
         display:'flex',
-        justifyContent:'space-between',
-        backgroundColor:'red',
+        justifyContent:'space-around',
+        backgroundColor:'#171a21',
         height:'7rem',
         alignItems:'center',
         paddingLeft:'40px',
-        paddingRight:'60px'
+        paddingRight:'60px',
+        position:'-webkit-sticky',
+        position:'sticky'
 
     }
     const styleCart={
@@ -35,6 +37,7 @@ const NavBar = (props) =>{
             <div id='Logo'>
                 <h1><Link to='/' className='link'>Supera Games</Link></h1>                
             </div>               
+            
             <div id='nav-bar-cart'>
                 
                 <Link to='/cart' className='link'>
