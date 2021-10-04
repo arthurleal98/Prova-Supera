@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import {BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import NavBar from "./navBar/navBar";
+import ListProducts from "./products/store";
+const App = ()=>{
+    const [qtdItems, setQtdItems] = useState(0);
+    const [subTotal, setSubTotal] = useState(0.00);
+    return(
+        <div>            
+            <Router>
+                <NavBar qtdItems={qtdItems} setQtdItems={setQtdItems} subTotal={subTotal} setSubTotal={setSubTotal}/>
+                <Switch>
+                    <Route path='/games'>
+                    </Route>
+                    <Route path='/cart'>
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+                    </Route>
+                    <Route path='/'>
+                        <ListProducts/>
+
+                    </Route>
+
+                </Switch>
+            </Router>
+
+
+        </div>
+        
+    )
 }
 
 export default App;
+
