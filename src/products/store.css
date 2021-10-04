@@ -1,0 +1,17 @@
+.unique-game{
+        border-radius: 5px;
+        width: 300px;
+}
+.unique-game:hover{
+    background-color: #b8b6b4;
+    
+
+}
+.text-content-game-store{
+    background-color: #1b2838;
+    color:#b8b6b4
+
+}
+.card{
+    height: 100%;
+}
