@@ -2,9 +2,9 @@ import { useEffect, useState } from "react"
 import products from '../products.json';
 import './store.css';
 import cartIconAdd from '../assets/cart-icon.svg';
-const ListProducts = ()=>{
+const ListProducts = (props)=>{
     const [gamesStore, setGamesStore] = useState([]);
-    
+    const [loading, setLoading] = useState(true);
     
     useEffect(()=>{
         const styleImg = {
@@ -45,14 +45,14 @@ const ListProducts = ()=>{
                 products.forEach((games)=>{
                     let card_game = [];
                     let floatValue = parseFloat(games.price).toFixed(2);
-                    card_game.push(<div style={styleContentImg}><img src={require('../assets/'+games.image).default} style={styleImg} className='card-img-top' alt={`product_${games.image}`}></img></div>)
-                    card_game.push(<div key={'describe'+games.id} className='card-body text-content-game-store'>
-                        <p key={'name'+games.name} className='card-text'>{games.name}</p>
-                        <p key={'score'+games.score} >Score: {games.score}</p>                        
+                    card_game.push(<div style={styleContentImg} key={games.id+'_contentimg'}><img key={games.id+'_img'}src={require('../assets/'+games.image).default} style={styleImg} className='card-img-top' alt={`product_${games.image}`}></img></div>)
+                    card_game.push(<div key={'describe_'+games.id} className='card-body text-content-game-store'>
+                        <p key={'name_'+games.name} className='card-text'>{games.name}</p>
+                        <p key={'score_'+games.score} >Score: {games.score}</p>                        
                         </div>);
-                    all_games.push(<div key={games.id}  className='unique-game col-lg-3  py-4'><div className='card shadow'>{card_game}</div><div  style={styleContentAddCart}>
+                    all_games.push(<div key={games.id}  className='unique-game col-lg-3  py-4'><div className='card shadow' key={'card_'+games.id}>{card_game}</div><div  style={styleContentAddCart} key={'contentaddcart_'+games.id}>
                     <p key={'price'+games.price} style={stylePrice} className='align-items-middle'>R$ {floatValue}</p>
-                    <button className='btn btn-success'><img src={cartIconAdd} style={styleCartIcon} alt='cart-icon'/></button>
+                    <button className='btn btn-success' onClick={()=>{props.addCart(games.name)}} key={'button'+games.id}><img src={cartIconAdd} style={styleCartIcon} alt='cart-icon' key={'iconaddcart'+games.id}/></button>
                     
 
                 </div></div>);
@@ -63,7 +63,11 @@ const ListProducts = ()=>{
             }
             catch(e){
                 console.log(e)
-            }}
+            }
+            finally{
+                setLoading(false)
+            }
+        }
         API();
 
     },[])
@@ -77,12 +81,22 @@ const ListProducts = ()=>{
 
 
     }
-    return(
-        <div style={styleDivall_games} className='container'>        
-            <div id='list_games_store' className='row' >
-                {gamesStore}
+    if(loading){
+        return(
+            <div className='container'>
+                <div className="lds-dual-ring"></div>
+
             </div>
-        </div>
-    )
+        )
+    }
+    else{
+        return(
+            <div style={styleDivall_games} className='container transition py-5'>        
+                <div id='list_games_store' className='row' >
+                    {gamesStore}
+                </div>
+            </div>
+        )
+        }
 }
 export default ListProducts;
