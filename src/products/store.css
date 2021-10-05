@@ -1,6 +1,5 @@
 .unique-game{
         border-radius: 5px;
-        width: 300px;
 }
 .unique-game:hover{
     background-color: #b8b6b4;
@@ -14,4 +13,5 @@
 }
 .card{
     height: 100%;
+    border: 0;
 }
