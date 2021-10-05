@@ -1,5 +1,5 @@
 import reactDom from 'react-dom';
-import App from './App';
+import App from './app.js';
 import './index.css';
 reactDom.render(
     <>
