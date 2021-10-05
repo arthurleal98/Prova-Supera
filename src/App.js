@@ -30,13 +30,17 @@ const App = ()=>{
         
     }
     const AddCart = (produto)=>{
+        console.log(produto)
         let lock=false;
         let posicao = 0;
+        console.log(cart);
+
         if(cart.length === 0){
             let object = {};
             object['nome'] = produto;
             object['qtdd'] = 1; 
-            setCart(cart.push(object))
+            cart.push(object)
+            setCart(cart)
 
 
         }
@@ -58,7 +62,8 @@ const App = ()=>{
                 let object = {};
                 object['nome'] = produto;
                 object['qtdd'] = 1; 
-                setCart(cart.push(object))
+                cart.push(object)
+                setCart(cart)
 
             }
 
@@ -80,7 +85,7 @@ const App = ()=>{
                     <Route path='/games'>
                         <ListProducts addCart={AddCart} key='listproducts'/>
 
-                    </Route>
+                   </Route>
                     <Route path='/cart'>
 
                     </Route>
