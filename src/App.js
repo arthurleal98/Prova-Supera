@@ -1,5 +1,6 @@
 import { useState } from "react";
 import {BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Cart from "./cart/Cart.js";
 import Home from "./home/home.js";
 import NavBar from "./navbar/navbar.js";
 import ListProducts from "./products/store";
@@ -29,16 +30,16 @@ const App = ()=>{
         setQtdItems(cont);
         
     }
-    const AddCart = (produto)=>{
+    const AddCart = (produto,preco)=>{
         console.log(produto)
         let lock=false;
         let posicao = 0;
-        console.log(cart);
 
         if(cart.length === 0){
             let object = {};
             object['nome'] = produto;
             object['qtdd'] = 1; 
+            object['preco'] = preco
             cart.push(object)
             setCart(cart)
 
@@ -53,15 +54,16 @@ const App = ()=>{
                 }
             });
             if(lock){
-                let object = {};
-                object['nome'] = cart[posicao].nome;
-                object['qtdd'] = (cart[posicao].qtdd+=1); 
+                cart[posicao].qtdd+=1;        
+                cart[posicao].preco=parseFloat(cart[posicao].preco)*parseInt(cart[posicao].qtdd).toFixed(2);
                 setCart(cart);
             }
             else{
                 let object = {};
                 object['nome'] = produto;
                 object['qtdd'] = 1; 
+                object['preco'] = preco
+
                 cart.push(object)
                 setCart(cart)
 
@@ -80,14 +82,14 @@ const App = ()=>{
     return(
         <div key='allelements'>            
             <Router key='router'>
-                <NavBar qtdItems={qtdItems} setQtdItems={setQtdItems} subTotal={subTotal} setSubTotal={setSubTotal} labelCart={labelCart} />
+                <NavBar qtdItems={qtdItems} setQtdItems={setQtdItems}  labelCart={labelCart}   />
                 <Switch>
                     <Route path='/games'>
-                        <ListProducts addCart={AddCart} key='listproducts'/>
+                        <ListProducts addCart={AddCart}  key='listproducts' />
 
                    </Route>
                     <Route path='/cart'>
-
+                        <Cart cart={cart} removeCart={1}/>
                     </Route>
                     <Route path='/'>
                         <Home/>
