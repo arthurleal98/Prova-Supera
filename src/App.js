@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Cart from "./cart/Cart.js";
 import Home from "./home/home.js";
@@ -6,39 +6,42 @@ import NavBar from "./navbar/navbar.js";
 import ListProducts from "./products/store";
 const App = ()=>{
     const [qtdItems, setQtdItems] = useState(0);
-    const [subTotal, setSubTotal] = useState(0.00);
     const [cart,setCart] = useState([]);
     const [labelCart, setLabelCart] = useState('vazio');
 
-    const produtsInCart = ()=>{
-        let cont = 0;       
+    
+    useEffect(()=>{
+        const qtd=()=>{
+            let cont = 0;       
 
-        if(cart.length === 0){
-            setLabelCart('vazio')
-        }
-        else{
+        
             cart.forEach((produto)=>{
                 cont+=produto.qtdd
              })
-             if(cart.length === 1){
-                setLabelCart('produto')
-            }
-            else{
-                setLabelCart('produtos')
-            }
-        }
-        setQtdItems(cont);
+            
         
-    }
-    const AddCart = (produto,preco)=>{
-        console.log(produto)
+
+        setQtdItems(cont);
+        }
+        qtd();
+        
+        
+        
+    
+
+    },[qtdItems, cart])
+    const AddCart = (produto,price)=>{
+        
         let lock=false;
         let posicao = 0;
-
+        let preco = price  ;
+        
         if(cart.length === 0){
             let object = {};
             object['nome'] = produto;
+            
             object['qtdd'] = 1; 
+            setQtdItems(1)
             object['preco'] = preco
             cart.push(object)
             setCart(cart)
@@ -54,30 +57,76 @@ const App = ()=>{
                 }
             });
             if(lock){
-                cart[posicao].qtdd+=1;        
-                cart[posicao].preco=parseFloat(cart[posicao].preco)*parseInt(cart[posicao].qtdd).toFixed(2);
+                cart[posicao].qtdd+=1;
+                let somaitems = qtdItems
+                somaitems+=1
+                setQtdItems(somaitems)        
+                cart[posicao].preco=parseFloat(preco) *parseInt(cart[posicao].qtdd).toFixed(2);
                 setCart(cart);
+
             }
             else{
                 let object = {};
                 object['nome'] = produto;
                 object['qtdd'] = 1; 
                 object['preco'] = preco
+                let somaitems = qtdItems
+                somaitems+=1
+                setQtdItems(somaitems) 
 
                 cart.push(object)
                 setCart(cart)
 
+
             }
+    }        
+    }
+    const RemoveCart = (produto,preco)=>{
+        let pos = 0;
+        cart.forEach((element,index)=>{
+            if(element.nome === produto){
+                pos=index
+            }
+        })
+        if(cart[pos].qtdd>1){
+            cart[pos].qtdd-=1; 
+            let somaitems = qtdItems
+                somaitems-=1
+                setQtdItems(somaitems)    
+            cart[pos].preco=parseFloat(preco) *parseInt(cart[pos].qtdd).toFixed(2);
+            setCart(cart);
+        }
 
+    }
 
+    const DeleteItem = (produto)=>{
+        let pos = 0;
+        let array = [];
+         let somaitems = qtdItems
+        cart.forEach((element,index)=>{
+            if(element.nome===produto){
+                pos = index
+                somaitems-=element.qtdd
 
-        };
-        produtsInCart();    
-        console.log(cart);
+            }
+            else{
+                array.push(element)
+            }
+            
+        })       
+       
+        setQtdItems(somaitems);
+        
 
-
+        setCart(array)
         
     }
+    const DeleteAll = ()=>{
+        setCart([]);
+        setQtdItems(0)
+
+    }
+
 
     return(
         <div key='allelements'>            
@@ -89,7 +138,7 @@ const App = ()=>{
 
                    </Route>
                     <Route path='/cart'>
-                        <Cart cart={cart} removeCart={1}/>
+                        <Cart cart={cart} qtdItems={qtdItems}  setQtdItems={setQtdItems} setCart={setCart} AddCart={AddCart} RemoveCart={RemoveCart} DeleteItem={DeleteItem} DeleteAll={DeleteAll}/>
                     </Route>
                     <Route path='/'>
                         <Home/>
