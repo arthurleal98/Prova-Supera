@@ -3,11 +3,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react/cjs/react.development";
 import products from '../products.json';
 
-const ItemsCart = (props)=>{
-    const [subTotal, setSubTotal] = useState(0.0);
-    const [total, setTotal] = useState(0.0);
-    const [frete, setFrete] = useState(0.0);
-    const [desconto, setDesconto] = useState(0.0);
+const ItemsCart = (props)=>{    
     const [showItems, setShowItems] = useState([]);
     const [trocaEstado,setTrocaEstado] = useState(false);
     const styleEmpty ={
@@ -15,11 +11,7 @@ const ItemsCart = (props)=>{
         paddingTop:'3rem',
         paddingBottom:'3rem'
 
-    }
-    
-
-
-    
+    }    
     useEffect(()=>{
         const Add=(nome,preco)=>{
             props.AddCart(nome,preco);
@@ -51,19 +43,7 @@ const ItemsCart = (props)=>{
 
 
         }
-        const styleComponent = {
-            alignItems:'center',
-            display:'flex'
-        }
-        const styleContentGame={
-            display:'flex'
-        }
-        const styleNameGame={
-
-        }
-        const styleValues={
-            verticalAlign:'middle',
-        }
+        
         let arrayItemsTr = [];
         props.cart.forEach((element)=>{
             let srcImg = '';
@@ -126,7 +106,7 @@ const ItemsCart = (props)=>{
        
         setShowItems(arrayItemsTr)
 
-    },[total,subTotal,frete,desconto,desconto, trocaEstado])
+    },[ trocaEstado,props])
     if(props.cart.length>0){
         return(
                 

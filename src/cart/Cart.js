@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import { useState } from "react/cjs/react.development";
 const Cart =(props)=>{
     const [trocaEstado,setTrocaEstado] = useState(false);
-    const [button, setButton] = useState('')
     const [subTotal, setSubTotal] = useState(0.0);
     const [total, setTotal] = useState(0.0);
     const [frete, setFrete] = useState(0.0);
@@ -35,15 +34,8 @@ const Cart =(props)=>{
         setFrete(frete);
         setSubTotal(subTotal.toFixed(2));
         setTotal(total.toFixed(2));
-    },[trocaEstado,button,frete,subTotal,total,padlock])
-    const stylePCarrinho={
-        fontSize:22,
-        color:'#b8b6b4',
-
-    }
-    const styleButton={
-        
-    }
+    },[trocaEstado,frete,subTotal,total,padlock,props.cart])
+    
     const styleTest={
         width:'100%',
         height:'100%'

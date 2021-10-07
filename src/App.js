@@ -7,7 +7,6 @@ import ListProducts from "./products/store";
 const App = ()=>{
     const [qtdItems, setQtdItems] = useState(0);
     const [cart,setCart] = useState([]);
-    const [labelCart, setLabelCart] = useState('vazio');
     const [subTotal, setSubTotal] = useState(0.0);
     const [total, setTotal] = useState(0.0);
     const [frete, setFrete] = useState(0.0);
@@ -15,17 +14,11 @@ const App = ()=>{
     
     useEffect(()=>{
         const qtd=()=>{
-            let cont = 0;       
-
-        
+            let cont = 0;        
             cart.forEach((produto)=>{
-                console.log(produto)
                 cont+=produto.qtdd
-             })
-            
-        
-
-             let subTotal = 0;
+             }) 
+            let subTotal = 0;
              let frete = 0;
              let total = 0;
              cart.forEach(element => {
@@ -52,7 +45,7 @@ const App = ()=>{
         
     
 
-    },[qtdItems,qtdItems])
+    },[qtdItems,cart])
     const AddCart = (produto,price)=>{
         
         let lock=false;
@@ -123,26 +116,18 @@ const App = ()=>{
     }
 
     const DeleteItem = (produto)=>{
-        let pos = 0;
         let array = [];
          let somaitems = qtdItems
         cart.forEach((element,index)=>{
             if(element.nome===produto){
-                pos = index
                 somaitems-=element.qtdd
-
             }
             else{
                 array.push(element)
-            }
-            
-        })       
-       
+            }            
+        })              
         setQtdItems(somaitems);
-        
-
-        setCart(array)
-        
+        setCart(array);        
     }
     const DeleteAll = ()=>{
         setCart([]);
@@ -154,7 +139,7 @@ const App = ()=>{
     return(
         <div key='allelements'>            
             <Router key='router'>
-                <NavBar qtdItems={qtdItems} setQtdItems={setQtdItems}  labelCart={labelCart}   />
+                <NavBar qtdItems={qtdItems} setQtdItems={setQtdItems}    />
                 <Switch>
                     <Route path='/games'>
                         <ListProducts addCart={AddCart}  key='listproducts' />
