@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react"
 import products from '../products.json';
 import './store.css';
+import { Link } from 'react-router-dom';
+import quckSort from '../utilites/quickSort'
 import cartIconAdd from '../assets/cart-icon.svg';
 const ListProducts = (props)=>{
     const [gamesStore, setGamesStore] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [ordem,setOrdem] = useState(['name',0])
     
     useEffect(()=>{
         const styleImg = {
@@ -38,11 +41,12 @@ const ListProducts = (props)=>{
             color:'#b8b6b4',
             borderRadius:5            
         }
-       const API = ()=>{ 
+       const API = async()=>{ 
             try{
+                
+                let sortedItems = quckSort(products,0,products.length-1,ordem[0],ordem[1])
                 const all_games = [];
-          
-                products.forEach((games)=>{
+                sortedItems.forEach((games)=>{
                     let card_game = [];
                     let floatValue = parseFloat(games.price).toFixed(2);
                     card_game.push(<div style={styleContentImg} key={games.id+'_contentimg'}><img key={games.id+'_img'}src={require('../assets/'+games.image).default} style={styleImg} className='card-img-top' alt={`product_${games.image}`}></img></div>)
@@ -52,7 +56,7 @@ const ListProducts = (props)=>{
                         </div>);
                     all_games.push(<div key={games.id}  className='unique-game col-lg-3  py-4'><div className='card shadow' key={'card_'+games.id}>{card_game}</div><div  style={styleContentAddCart} key={'contentaddcart_'+games.id}>
                     <p key={'price'+games.price} style={stylePrice} className='align-items-middle'>R$ {floatValue}</p>
-                    <button className='btn btn-success' onClick={()=>{props.addCart(games.name)}} key={'button'+games.id}><img src={cartIconAdd} style={styleCartIcon} alt='cart-icon' key={'iconaddcart'+games.id}/></button>
+                    <Link to='/cart' className='link'><button className='btn btn-success' onClick={()=>{props.addCart(games.name,floatValue)}} key={'button'+games.id}><img src={cartIconAdd} style={styleCartIcon} alt='cart-icon' key={'iconaddcart'+games.id}/></button></Link>
                     
 
                 </div></div>);
@@ -70,8 +74,10 @@ const ListProducts = (props)=>{
         }
         API();
 
-    },[])
-    
+    },[props,ordem])
+    const styleH1={
+        color:'#b8b6b4'
+    }
     const styleDivall_games = {
 
         
@@ -80,6 +86,17 @@ const ListProducts = (props)=>{
        
 
 
+    }
+    const styleSelect={
+        height:30,
+        justifyContent:'flex-end',
+        display:'flex'
+    }
+    const CaptureSelect = (event)=>{
+        console.log(event.target.value)
+        let split = event.target.value.split(' ')
+        console.log([split[0],split[1]])
+        setOrdem([split[0],parseInt(split[1])])
     }
     if(loading){
         return(
@@ -91,7 +108,19 @@ const ListProducts = (props)=>{
     }
     else{
         return(
-            <div style={styleDivall_games} className='container transition py-5'>        
+            
+            <div style={styleDivall_games} className='container transition py-5'>
+                <div>
+                <div><h1 style={styleH1}>Todos os jogos</h1></div>   
+                <div className='my-2' style={styleSelect}><select class="form-select" aria-label="Default select example" onChange={(event)=>{CaptureSelect(event)}}>
+                        <option value='name 0' >Nome</option>
+                        <option value="score 0">Popularidade Crescente</option>
+                        <option value="score 1">Popularidade Decrescente</option>
+                        <option value="price 0">Valor Crescente</option>
+                        <option value="price 1">Valor Decrescente</option>
+                    </select></div>
+                </div>  
+                
                 <div id='list_games_store' className='row' >
                     {gamesStore}
                 </div>
