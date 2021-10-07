@@ -93,9 +93,7 @@ const ListProducts = (props)=>{
         display:'flex'
     }
     const CaptureSelect = (event)=>{
-        console.log(event.target.value)
         let split = event.target.value.split(' ')
-        console.log([split[0],split[1]])
         setOrdem([split[0],parseInt(split[1])])
     }
     if(loading){

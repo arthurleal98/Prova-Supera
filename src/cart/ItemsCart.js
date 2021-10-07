@@ -45,7 +45,6 @@ const ItemsCart = (props)=>{
         const DeleteItem = (produto)=>{
             props.DeleteItem(produto)
             setTrocaEstado(!trocaEstado);
-            console.log('removeu'+produto)
 
 
         }
@@ -135,7 +134,6 @@ const ItemsCart = (props)=>{
         setSubTotal(subTotal);
         setTotal(total);
         setShowItems(arrayItemsTr)
-        console.log(total)
 
     },[total,subTotal,frete,desconto,props.cart,desconto, trocaEstado,props.qtdItems])
     if(props.cart.length>0){

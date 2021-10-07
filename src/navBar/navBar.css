@@ -23,9 +23,15 @@
 
 }
 @media screen and (max-width: 850px) {
+    .toggle{
+        display: block;
+        color:white;
+        width:300px;
+        text-align: center;
 
+    }
     #nav-bar-cart{
-        display: none;
+        justify-content: center;
     }
 }
 .link,.link:link ,.link:focus{
@@ -36,4 +42,7 @@
 
     color:white
 }
+
+#toggle-button{
+    background-color: #b8b6b4;}
 

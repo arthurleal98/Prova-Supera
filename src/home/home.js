@@ -10,7 +10,7 @@ const Home = () =>{
 
     
     return(
-        <div  style={styleHome}>
+        <div  style={styleHome} className='transition'>
             
             <div >
                 <h1>Bem-vindo a Supera Games</h1>
