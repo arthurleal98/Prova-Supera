@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useState } from "react/cjs/react.development";
 import products from '../products.json';
 
@@ -15,6 +16,9 @@ const ItemsCart = (props)=>{
         paddingBottom:'3rem'
 
     }
+    
+
+
     
     useEffect(()=>{
         const Add=(nome,preco)=>{
@@ -72,52 +76,57 @@ const ItemsCart = (props)=>{
             })
             let arrayTd =[]
             arrayTd.push(
-                <div class="row mb-4">
-          <div class="col-md-5 col-lg-3 col-xl-3">
-            <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
+                <div className="row mb-4">
+          <div className="col-md-5 col-lg-3 col-xl-3">
+            <div className="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
             <img className='img-fluid w-100' src={require('../assets/'+srcImg).default} alt='img-product'/>
              
             </div>
           </div>
-          <div class="col-md-7 col-lg-9 col-xl-9">
+          <div className="col-md-7 col-lg-9 col-xl-9 " >
             <div>
-              <div class="d-flex justify-content-between">
+              <div className="d-flex justify-content-between">
                 <div>
                   <h5>{element.nome}</h5>
                   
                 </div>
                 <div>
-                  <div class="def-number-input number-input safari_only mb-0 w-100">
-                    <button onClick={()=>{Remove(element.nome,precounitario)}}
-                      class="minus decrease">-</button>
-                    <p class="quantity">{element.qtdd}</p>
-                    <button onClick={()=>{Add(element.nome, precounitario)}}
-                      class="plus increase">+</button>
+                  <div className=" mb-0 w-100 d-flex">
+                    <div onClick={()=>{Remove(element.nome,precounitario)} }
+                      className="px-2 buttons-qtd"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-dash-lg" viewBox="0 0 16 16">
+                      <path d="M0 8a1 1 0 0 1 1-1h14a1 1 0 1 1 0 2H1a1 1 0 0 1-1-1z"/>
+                    </svg></div>
+                    <p className="quantity">{element.qtdd}</p>
+                    <div onClick={()=>{Add(element.nome, precounitario)} }
+                      className="px-2 buttons-qtd"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-plus-lg" viewBox="0 0 16 16">
+                      <path d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z"/>
+                    </svg></div>
                   </div>
-                  <small id="passwordHelpBlock" class="form-text text-muted text-center">
-                    (Note, 1 piece)
+                  <small id="passwordHelpBlock" className="form-text text-muted text-center">
+                    (Valor, unidade)
                   </small>
                 </div>
               </div>
-              <div class="d-flex justify-content-between align-items-center">
+              <div className="d-flex justify-content-between align-items-center">
                 <div>
-                  <a href="#!" type="button" class="card-link-secondary small text-uppercase mr-3" onClick={()=>{DeleteItem(element.nome)}}><i
-                      class="fas fa-trash-alt mr-1"></i> Remove item </a>
+                  <div   className="small text-uppercase mr-3" onClick={()=>{DeleteItem(element.nome)}} id='remove-item'><i
+                      className=" mr-1 "></i> Remover item </div>
                   
                 </div>
-                <p class="mb-0"><span><strong id="summary">R$ {precounitario}</strong></span></p>
+                <p className="mb-0"><span><strong id="summary">R$ {precounitario}</strong></span></p>
               </div>
             </div>
           </div>
+          <hr/>
         </div>
             )
 
-            arrayItemsTr.push(<div key={element.nome}>{arrayTd}</div>)
+            arrayItemsTr.push(<div key={element.nome} >{arrayTd}</div>)
         })
        
         setShowItems(arrayItemsTr)
 
-    },[total,subTotal,frete,desconto,props.cart,desconto, trocaEstado,props.qtdItems])
+    },[total,subTotal,frete,desconto,desconto, trocaEstado])
     if(props.cart.length>0){
         return(
                 
@@ -127,10 +136,12 @@ const ItemsCart = (props)=>{
         )
     }
     else{
+
         return(
             <div className='text-center'>
                 <p style={styleEmpty}>Não há nenhum item</p>
-                <hr />
+                <Link to='/games' className='link'><button type="button" className="btn btn-success ">Voltar ao Catálogo</button></Link>
+                
             </div>
             
 

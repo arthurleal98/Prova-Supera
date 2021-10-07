@@ -8,6 +8,7 @@ const Cart =(props)=>{
     const [subTotal, setSubTotal] = useState(0.0);
     const [total, setTotal] = useState(0.0);
     const [frete, setFrete] = useState(0.0);
+    const [padlock,setPadlock] = useState(false);
     
    
     const DeleteAll = ()=>{
@@ -15,11 +16,6 @@ const Cart =(props)=>{
         setTrocaEstado(!trocaEstado)
         }
     useEffect(()=>{
-        if(props.cart.length>1){
-                     setButton(<button className='btn btn-sucess' onClick={()=>{DeleteAll()}}>Remover Tudo</button>);
-
-        }
-
         let subTotal = 0;
         let frete = 0;
         let total = 0;
@@ -39,7 +35,7 @@ const Cart =(props)=>{
         setFrete(frete);
         setSubTotal(subTotal.toFixed(2));
         setTotal(total.toFixed(2));
-    },[trocaEstado,button,frete,subTotal,total])
+    },[trocaEstado,button,frete,subTotal,total,padlock])
     const stylePCarrinho={
         fontSize:22,
         color:'#b8b6b4',
@@ -53,50 +49,39 @@ const Cart =(props)=>{
         height:'100%'
     }
    
-    return(<div className='Cart-Container transition' style={styleTest}>
+    return(<div className='Cart-Container transition container my-5' style={styleTest}>
         <section>
 
-<div class="row">
+<div className="row">
 
-  <div class="col-lg-8">
+  <div className="col-lg-8">
 
-    <div class="mb-3">
-      <div class="pt-4 wish-list">
+    <div className="mb-3 mr-2">
+      <div className="pt-4 ">
 
-        <h5 class="mb-4">Cart (<span>2</span> items)</h5>
-
-        <ItemsCart cart={props.cart} qtdItems={props.qtdItems}  setQtdItems={props.setQtdItems} setCart = {props.setCart} AddCart={props.AddCart} RemoveCart={props.RemoveCart} DeleteItem={props.DeleteItem} DeleteAll={props.DeleteAll}/>
-
-        <hr class="mb-4"/>
-        
-        
-
-      </div>
+        <h5 className="mb-4 ml-2">Carrrinho (<span>{props.qtdItems}</span> itens)</h5>
+        <ItemsCart setPadlock={setPadlock} cart={props.cart} qtdItems={props.qtdItems}  setQtdItems={props.setQtdItems} setCart = {props.setCart} AddCart={props.AddCart} RemoveCart={props.RemoveCart} DeleteItem={props.DeleteItem} DeleteAll={props.DeleteAll}/>
+        </div>
     </div>
+ </div>
 
-    
+  <div className="col-lg-4 ">
 
-    
+    <div className="mb-3 mx-2 ">
+      <div className="pt-4">
 
-  </div>
+        <h5 className="mb-3">Resumo</h5>
 
-  <div class="col-lg-4">
-
-    <div class="mb-3">
-      <div class="pt-4">
-
-        <h5 class="mb-3">The total amount of</h5>
-
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
-            Temporary amount
+        <ul className="list-group list-group-flush">
+          <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+            SubTotal
             <span>R$ {props.subTotal}</span>
           </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center px-0">
-            Shipping
+          <li className="list-group-item d-flex justify-content-between align-items-center px-0">
+            Frete
             <span>{props.frete}</span>
           </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+          <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
             <div>
               <strong>Total</strong>
               
@@ -105,30 +90,14 @@ const Cart =(props)=>{
           </li>
         </ul>
 
-        <button type="button" class="btn btn-primary btn-block">go to checkout</button>
+        <button type="button" className="btn btn-primary btn-block">Finalizar Compra</button>
+        <button type="button" className="btn btn-outline-danger btn-block " onClick={()=>{DeleteAll()}}>Limpar Carrinho</button>
+
 
       </div>
     </div>
 
-    <div class="mb-3">
-      <div class="pt-4">
-
-        <a class="dark-grey-text d-flex justify-content-between" data-toggle="collapse" href="#collapseExample"
-          aria-expanded="false" aria-controls="collapseExample">
-          Add a discount code (optional)
-          <span><i class="fas fa-chevron-down pt-1"></i></span>
-        </a>
-
-        <div class="collapse" id="collapseExample">
-          <div class="mt-3">
-            <div class="md-form md-outline mb-0">
-              <input type="text" id="discount-code" class="form-control font-weight-light"
-                placeholder="Enter discount code"/>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+   
 
   </div>
 

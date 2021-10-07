@@ -7,8 +7,8 @@
 
 }
 hr{
-    background-color:rgb(228, 136, 39);
-    width: 10%;
+    background-color:rgb(216, 203, 189);
+    width: 90%;
 
 }
 #table-items{
@@ -51,9 +51,7 @@ hr{
 .header-thead{
     display: table-header-group;
 }
-.table-value-content{
 
-}
 .thead-th{
     font-size: 22;
 }
@@ -70,10 +68,7 @@ p{
     border-top: 1px solid #dee2e6;
 }
 
-.buttonsqtdd{
-    
 
-}
 .icon-qtd{    transition: 0.2s;
     border-radius: 100%;
     width: 100%;
@@ -102,26 +97,21 @@ p{
     border-radius: 20px;
     box-shadow: 0px 25px 40px #1687d933;
    }
-
-   .Header{
-    margin: auto;
-    width: 90%;
-    height: 15%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-   }
-   .Heading{
+.buttons-qtd{
+    width: 30px;
+    height: 20px;
+    align-self: center;
+    transition: 0.2s;
+}
+.buttons-qtd:hover{
+    background-color: #3d5e79;
+}
+.quantity{
     font-size: 20px;
-    font-family: ‘Open Sans’;
-    font-weight: 700;
-    color: #2F3841;
-   }
-   .Action{
-    font-size: 14px;
-    font-family: ‘Open Sans’;
-    font-weight: 600;
-    color: #E44C4C;
-    cursor: pointer;
-    border-bottom: 1px solid #E44C4C;
-   }
+}
+#remove-item{
+    color: rgb(163, 52, 32);
+}
+#remove-item:hover{
+    color: #3d5e79;
+}
