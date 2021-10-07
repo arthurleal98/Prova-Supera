@@ -21,7 +21,8 @@ const ItemsCart = (props)=>{
             props.AddCart(nome,preco);
             let qtd = props.qtdItems
             props.setQtdItems(qtd+=1)
-            setTrocaEstado(!trocaEstado);
+            let troca = !trocaEstado
+            setTrocaEstado(troca);
         }
         const Remove = (nome,preco)=>{
             let pos = 0;
@@ -33,14 +34,12 @@ const ItemsCart = (props)=>{
             if(props.cart[pos].qtdd>1){
                 props.RemoveCart(nome,preco);
                             
-                            let qtd = props.qtdItems
-                            props.setQtdItems(qtd-=1)
-                            setTrocaEstado(!trocaEstado);
-            }
-            
-            let qtd = props.qtdItems
+                let qtd = props.qtdItems
             props.setQtdItems(qtd-=1)
             setTrocaEstado(!trocaEstado);
+            }
+            
+           
         }
         const DeleteItem = (produto)=>{
             props.DeleteItem(produto)
@@ -72,94 +71,60 @@ const ItemsCart = (props)=>{
             }
             })
             let arrayTd =[]
-            arrayTd.push(<td key='contentItemTdNome'>
-                <div style={styleContentGame}>
-                    <img className='img-store-table' src={require('../assets/'+srcImg).default} alt='img-product'/>
-                    <div style={styleComponent} className='px-3'> 
-                        <p >{element.nome}</p>
-
-                    </div>
+            arrayTd.push(
+                <div class="row mb-4">
+          <div class="col-md-5 col-lg-3 col-xl-3">
+            <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
+            <img className='img-fluid w-100' src={require('../assets/'+srcImg).default} alt='img-product'/>
+             
+            </div>
+          </div>
+          <div class="col-md-7 col-lg-9 col-xl-9">
+            <div>
+              <div class="d-flex justify-content-between">
+                <div>
+                  <h5>{element.nome}</h5>
+                  
                 </div>
-                </td>)
-            arrayTd.push(<td key='contentItemTdQtdd' style={styleValues} >
-                            <div className='d-flex'>
-                                <div  onClick={()=>{Remove(element.nome,precounitario)}} className='pr-1'>
-                                    <svg className='mt-2 ' xmlns="http://www.w3.org/2000/svg" width="30" height="20" fill="currentColor" class="buttonsqtdd icon-qtd  bi bi-dash" viewBox="0 0 16 16">
-                                    <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
-                                    </svg>
-                                </div>
-                                <div id='qtd'>
-                                    <p className=''>{element.qtdd}</p>
-                                </div>
-                                <div>
-                                    
-                                </div>
-                                    <div  onClick={()=>{Add(element.nome, precounitario)}}  className='pl-1'>
-                                        <svg className='mt-2 ' xmlns="http://www.w3.org/2000/svg" width="30" height="20" fill="currentColor" class="buttonsqtdd icon-qtd  bi bi-plus" viewBox="0 0 16 16">
-                                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                                        </svg>
-                                    </div>     
-                            </div>
-                                               
-                </td>)
-            arrayTd.push(<td key='contentItemTdPreco' style={styleValues} >R$ {parseFloat(element.preco).toFixed(2)}</td>)
-            arrayTd.push(<td key='trash' style={styleValues} ><div >
-                <svg  onClick={()=>{DeleteItem(element.nome)}} xmlns="http://www.w3.org/2000/svg" width="30" height="20" fill="currentColor" class="buttonsqtdd icon-qtd  bi bi-trash " viewBox="0 0 16 16">
-                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-                </svg>
-                </div></td>)
+                <div>
+                  <div class="def-number-input number-input safari_only mb-0 w-100">
+                    <button onClick={()=>{Remove(element.nome,precounitario)}}
+                      class="minus decrease">-</button>
+                    <p class="quantity">{element.qtdd}</p>
+                    <button onClick={()=>{Add(element.nome, precounitario)}}
+                      class="plus increase">+</button>
+                  </div>
+                  <small id="passwordHelpBlock" class="form-text text-muted text-center">
+                    (Note, 1 piece)
+                  </small>
+                </div>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <a href="#!" type="button" class="card-link-secondary small text-uppercase mr-3"><i
+                      class="fas fa-trash-alt mr-1"></i> Remove item </a>
+                  
+                </div>
+                <p class="mb-0"><span><strong id="summary">R$ {precounitario}</strong></span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+            )
 
-            arrayItemsTr.push(<tr key={element.nome}>{arrayTd}</tr>)
+            arrayItemsTr.push(<div key={element.nome}>{arrayTd}</div>)
         })
        
-        
-        let subTotal = 0;
-        let frete = 0;
-        let total = 0;
-        props.cart.forEach(element => {
-            subTotal+=parseFloat(element.preco)
-            frete+=parseInt(element.qtdd)
-        });
-        if(subTotal>=250){
-            frete='Grátis'
-            total = subTotal
-        }
-        else{
-            frete= frete *10
-            total = frete+subTotal;
-            frete= 'R$ '+frete
-        }
-        setFrete(frete);
-        setSubTotal(subTotal);
-        setTotal(total);
         setShowItems(arrayItemsTr)
 
     },[total,subTotal,frete,desconto,props.cart,desconto, trocaEstado,props.qtdItems])
     if(props.cart.length>0){
-        return(<div className='flex-wrap tables-cart'>
-               
-                <div id='table-items'>
-                    <table className='table'>
-                        <thead key='cabecalho_table'>
-                            <tr>
-                                <th key='name_produto' >Produto</th>
-                            <th key='name_qtdd' >Qtdd</th>
-                            <th key='name_preco' >Preço</th>
-                            </tr>
-                            
-                        </thead>
-                        <tbody key='items'>
-                            {
-                                showItems
-                            }
-                        </tbody>
-                    </table>
-                </div>
+        return(
                 
-                 
+                 <div>{showItems}</div>
 
-        </div>)
+        
+        )
     }
     else{
         return(

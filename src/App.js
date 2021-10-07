@@ -8,7 +8,10 @@ const App = ()=>{
     const [qtdItems, setQtdItems] = useState(0);
     const [cart,setCart] = useState([]);
     const [labelCart, setLabelCart] = useState('vazio');
-
+    const [subTotal, setSubTotal] = useState(0.0);
+    const [total, setTotal] = useState(0.0);
+    const [frete, setFrete] = useState(0.0);
+    
     
     useEffect(()=>{
         const qtd=()=>{
@@ -16,11 +19,31 @@ const App = ()=>{
 
         
             cart.forEach((produto)=>{
+                console.log(produto)
                 cont+=produto.qtdd
              })
             
         
 
+             let subTotal = 0;
+             let frete = 0;
+             let total = 0;
+             cart.forEach(element => {
+                 subTotal+=parseFloat(element.preco)
+                 frete+=parseInt(element.qtdd)
+             });
+             if(subTotal>=250){
+                 frete='Grátis'
+                 total = subTotal
+             }
+             else{
+                 frete= frete *10
+                 total = frete+subTotal;
+                 frete= 'R$ '+frete.toFixed(2)
+             }
+             setFrete(frete);
+             setSubTotal(subTotal.toFixed(2));
+             setTotal(total.toFixed(2));
         setQtdItems(cont);
         }
         qtd();
@@ -29,7 +52,7 @@ const App = ()=>{
         
     
 
-    },[qtdItems, cart])
+    },[qtdItems,qtdItems])
     const AddCart = (produto,price)=>{
         
         let lock=false;
@@ -138,7 +161,7 @@ const App = ()=>{
 
                    </Route>
                     <Route path='/cart'>
-                        <Cart cart={cart} qtdItems={qtdItems}  setQtdItems={setQtdItems} setCart={setCart} AddCart={AddCart} RemoveCart={RemoveCart} DeleteItem={DeleteItem} DeleteAll={DeleteAll}/>
+                        <Cart cart={cart} qtdItems={qtdItems} total={total} frete={frete} subTotal={subTotal}  setQtdItems={setQtdItems} setCart={setCart} AddCart={AddCart} RemoveCart={RemoveCart} DeleteItem={DeleteItem} DeleteAll={DeleteAll}/>
                     </Route>
                     <Route path='/'>
                         <Home/>
