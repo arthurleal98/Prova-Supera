@@ -8,11 +8,55 @@
 }
 .text-content-game-store{
     background-color: #1b2838;
-    color:#b8b6b4
+    color:#b8b6b4;
 
+}
+@media screen and (min-width:1000px) {
+    .text-content-game-store{
+        background-color: #1b2838;
+        color:#b8b6b4;
+        min-height: 150px;
+    
+    }
 }
 .card{
     height: 100%;
     border: 0;
 }
 
+.label{
+    color:#b8b6b4;
+    font-size: 1.2rem;
+
+}
+#ordenacao{
+    display: flex;
+    justify-content: space-between;
+}
+#select{
+    padding-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+    font-size: 1.1rem;
+}
+@media screen and (max-width:1000px) {
+    #ordenacao{
+        text-align: center;
+    }
+    #select{
+        display: block;
+    }
+}
+.all-games{
+    padding-right: 20px;
+    padding-left: 20px;
+}
+.filters-div{
+    max-width: 25%;
+}
+.store{
+    display: flex;
+}
+.search-store{
+    width: 100%;
+}
