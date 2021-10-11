@@ -148,7 +148,7 @@ const App = ()=>{
                     <Route path='/cart'>
                         <Cart cart={cart} qtdItems={qtdItems} total={total} frete={frete} subTotal={subTotal}  setQtdItems={setQtdItems} setCart={setCart} AddCart={AddCart} RemoveCart={RemoveCart} DeleteItem={DeleteItem} DeleteAll={DeleteAll}/>
                     </Route>
-                    <Route path='/'>
+                    <Route exact path='/'>
                         <Home/>
                     </Route>
 
