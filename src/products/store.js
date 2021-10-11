@@ -7,8 +7,10 @@ import cartIconAdd from '../assets/cart-icon.svg';
 const ListProducts = (props)=>{
     const [gamesStore, setGamesStore] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [ordem,setOrdem] = useState(['name',0])
+    const [ordem,setOrdem] = useState(['name',0]);
     const [search, setSearch]= useState('');
+
+    
     useEffect(()=>{
         const styleImg = {
         with:'30px',
@@ -47,7 +49,7 @@ const ListProducts = (props)=>{
                 let sortedItems = quckSort(products,0,products.length-1,ordem[0],ordem[1])                
                 let filter_items = sortedItems.filter((element)=>{return(element.name,element.name.toLowerCase().indexOf(search)!==-1)})
                 filter_items.forEach((games)=>{
-                    
+
                         let card_game = [];
                         let floatValue = parseFloat(games.price).toFixed(2);
                         card_game.push(<div style={styleContentImg} key={games.id+'_contentimg'}>
@@ -58,7 +60,7 @@ const ListProducts = (props)=>{
                                             <p key={'score_'+games.score} >Score: {games.score}</p>                        
                                         </div>);
                         all_games.push(<div key={games.id}  className='unique-game col-lg-3  py-4'>
-                                            <div className='card shadow' key={'card_'+games.id}>
+                                            <div className='card shadow transition' key={'card_'+games.id}>
                                                 {card_game}
                                             </div>
                                             <div  style={styleContentAddCart} key={'contentaddcart_'+games.id}>
@@ -66,7 +68,7 @@ const ListProducts = (props)=>{
                                                 <Link to='/cart' className='link'><button className='btn btn-success' onClick={()=>{props.addCart(games.name,floatValue)}} key={'button'+games.id}><img src={cartIconAdd} style={styleCartIcon} alt='cart-icon' key={'iconaddcart'+games.id}/></button></Link>
                                             </div>
                                         </div>);
-                    
+
                 });
                 setGamesStore(all_games);               
                 
@@ -80,24 +82,28 @@ const ListProducts = (props)=>{
         }
         API();
 
-    },[props,ordem, search])
+    },[props,ordem,search])
     const styleH1={
         color:'#b8b6b4'
     }
     const styleDivall_games = {
+
         
         justifyContent:'center',
-        paddingBottom:'100px' 
+        paddingBottom:'100px'
+       
 
 
     }
-   
+    const styleSelect={
+        height:30,
+        justifyContent:'flex-end',
+        display:'flex'
+    }
     const CaptureSelect = (event)=>{
         let split = event.target.value.split(' ')
         setOrdem([split[0],parseInt(split[1])])
-        
     }
-    
     if(loading){
         return(
             <div className='container'>
@@ -108,20 +114,21 @@ const ListProducts = (props)=>{
     }
     else{
         return(
-            <div className='store'>  
+            
+            <div className='store container'>  
                 <div className='filters-div'>
-                    
+
                     <div className='search-store'>
         {                    <input type='search' placeholder='Procurar' onChange={(e)=>{setSearch(e.target.value.toLowerCase())}}></input>
 }                </div>
-                    
+
                 </div>              
             <div style={styleDivall_games} className='transition py-5 all-games' >
                 <div id='ordenacao'>
                 <h1 style={styleH1}>Todos os jogos</h1>
-                
+
                 <div id='select' >
-                    
+
                         <div >
                             <label className='label'>Ordenar por:</label>
                             <div className='' >
@@ -134,15 +141,13 @@ const ListProducts = (props)=>{
                                 </select>
                             </div>
                         </div>
-                        
+
                 </div>   
-                
-                </div>  
                 
                 <div id='list_games_store' className='row' >
                     {gamesStore}
                 </div>
-            </div></div>
+            </div></div></div>
         )
         }
 }

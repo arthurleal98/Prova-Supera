@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import {BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Cart from "./cart/Cart.js";
 import Home from "./home/home.js";
-import NavBar from "./navbar/navbar.js";
+import NavBar from "./navbar/navBar.js";
 import ListProducts from "./products/store";
 const App = ()=>{
     const [qtdItems, setQtdItems] = useState(0);
@@ -138,7 +138,7 @@ const App = ()=>{
 
     return(
         <div key='allelements'>            
-            <Router key='router' basename={process.env.PUBLIC_URL}>
+            <Router key='router'>
                 <NavBar qtdItems={qtdItems} setQtdItems={setQtdItems}    />
                 <Switch>
                     <Route path='/games'>
@@ -148,7 +148,7 @@ const App = ()=>{
                     <Route path='/cart'>
                         <Cart cart={cart} qtdItems={qtdItems} total={total} frete={frete} subTotal={subTotal}  setQtdItems={setQtdItems} setCart={setCart} AddCart={AddCart} RemoveCart={RemoveCart} DeleteItem={DeleteItem} DeleteAll={DeleteAll}/>
                     </Route>
-                    <Route exact path='/'>
+                    <Route path='/'>
                         <Home/>
                     </Route>
 

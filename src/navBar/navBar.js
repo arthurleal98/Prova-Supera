@@ -1,4 +1,4 @@
-import './navbar.css';
+import './navBar.css';
 import { Link } from 'react-router-dom';
 import cart from '../assets/shopping-cart.png';
 const NavBar = (props) =>{
