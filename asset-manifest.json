@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/Prova-Supera/static/css/main.7b3c7151.chunk.css",
+    "main.js": "/Prova-Supera/static/js/main.3568beaf.chunk.js",
+    "main.js.map": "/Prova-Supera/static/js/main.3568beaf.chunk.js.map",
+    "runtime-main.js": "/Prova-Supera/static/js/runtime-main.03e7a658.js",
+    "runtime-main.js.map": "/Prova-Supera/static/js/runtime-main.03e7a658.js.map",
+    "static/js/2.398fce85.chunk.js": "/Prova-Supera/static/js/2.398fce85.chunk.js",
+    "static/js/2.398fce85.chunk.js.map": "/Prova-Supera/static/js/2.398fce85.chunk.js.map",
+    "index.html": "/Prova-Supera/index.html",
+    "static/css/main.7b3c7151.chunk.css.map": "/Prova-Supera/static/css/main.7b3c7151.chunk.css.map",
+    "static/js/2.398fce85.chunk.js.LICENSE.txt": "/Prova-Supera/static/js/2.398fce85.chunk.js.LICENSE.txt",
+    "static/media/arrow-down-icon.svg": "/Prova-Supera/static/media/arrow-down-icon.5e58fb56.svg",
+    "static/media/call-of-duty-infinite-warfare.png": "/Prova-Supera/static/media/call-of-duty-infinite-warfare.83332c2a.png",
+    "static/media/call-of-duty-wwii.png": "/Prova-Supera/static/media/call-of-duty-wwii.9625ebaa.png",
+    "static/media/cart-icon.svg": "/Prova-Supera/static/media/cart-icon.f62597cd.svg",
+    "static/media/fifa-18.png": "/Prova-Supera/static/media/fifa-18.fde15021.png",
+    "static/media/horizon-zero-dawn.png": "/Prova-Supera/static/media/horizon-zero-dawn.78d27d76.png",
+    "static/media/mortal-kombat-xl.png": "/Prova-Supera/static/media/mortal-kombat-xl.b5fe094d.png",
+    "static/media/shards-of-darkness.png": "/Prova-Supera/static/media/shards-of-darkness.81e9316a.png",
+    "static/media/super-mario-odyssey.png": "/Prova-Supera/static/media/super-mario-odyssey.8bf89689.png",
+    "static/media/terra-media-sombras-de-mordor.png": "/Prova-Supera/static/media/terra-media-sombras-de-mordor.b45356a2.png",
+    "static/media/the-witcher-iii-wild-hunt.png": "/Prova-Supera/static/media/the-witcher-iii-wild-hunt.a6cbe2dc.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.03e7a658.js",
+    "static/js/2.398fce85.chunk.js",
+    "static/css/main.7b3c7151.chunk.css",
+    "static/js/main.3568beaf.chunk.js"
+  ]
+}
