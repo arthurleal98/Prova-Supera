@@ -44,7 +44,7 @@ const NavBar = (props) =>{
       
     </ul>
       <div id='nav-bar-cart'>                
-                <Link to='/cart' className='link'>
+                <Link to='/Prova-Supera/cart' className='link'>
                     <div id='nav-cart'>
                         <img src={cart} alt='cart' style={styleCart} />
                         <div style={styleContentCart}>
