@@ -5,7 +5,7 @@ import App from './App.js';
 import './index.css';
 reactDom.render(
     <React.StrictMode>
-        <HashRouter>
+        <HashRouter basename='/'>
             <App/>
         </HashRouter>
 
