@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/Prova-Supera/static/css/main.7b3c7151.chunk.css",
-    "main.js": "/Prova-Supera/static/js/main.3568beaf.chunk.js",
-    "main.js.map": "/Prova-Supera/static/js/main.3568beaf.chunk.js.map",
+    "main.js": "/Prova-Supera/static/js/main.ca65b9b6.chunk.js",
+    "main.js.map": "/Prova-Supera/static/js/main.ca65b9b6.chunk.js.map",
     "runtime-main.js": "/Prova-Supera/static/js/runtime-main.03e7a658.js",
     "runtime-main.js.map": "/Prova-Supera/static/js/runtime-main.03e7a658.js.map",
-    "static/js/2.398fce85.chunk.js": "/Prova-Supera/static/js/2.398fce85.chunk.js",
-    "static/js/2.398fce85.chunk.js.map": "/Prova-Supera/static/js/2.398fce85.chunk.js.map",
+    "static/js/2.7b4856bc.chunk.js": "/Prova-Supera/static/js/2.7b4856bc.chunk.js",
+    "static/js/2.7b4856bc.chunk.js.map": "/Prova-Supera/static/js/2.7b4856bc.chunk.js.map",
     "index.html": "/Prova-Supera/index.html",
     "static/css/main.7b3c7151.chunk.css.map": "/Prova-Supera/static/css/main.7b3c7151.chunk.css.map",
-    "static/js/2.398fce85.chunk.js.LICENSE.txt": "/Prova-Supera/static/js/2.398fce85.chunk.js.LICENSE.txt",
+    "static/js/2.7b4856bc.chunk.js.LICENSE.txt": "/Prova-Supera/static/js/2.7b4856bc.chunk.js.LICENSE.txt",
     "static/media/arrow-down-icon.svg": "/Prova-Supera/static/media/arrow-down-icon.5e58fb56.svg",
     "static/media/call-of-duty-infinite-warfare.png": "/Prova-Supera/static/media/call-of-duty-infinite-warfare.83332c2a.png",
     "static/media/call-of-duty-wwii.png": "/Prova-Supera/static/media/call-of-duty-wwii.9625ebaa.png",
@@ -24,8 +24,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.03e7a658.js",
-    "static/js/2.398fce85.chunk.js",
+    "static/js/2.7b4856bc.chunk.js",
     "static/css/main.7b3c7151.chunk.css",
-    "static/js/main.3568beaf.chunk.js"
+    "static/js/main.ca65b9b6.chunk.js"
   ]
 }
