@@ -141,14 +141,14 @@ const App = ()=>{
             <Router key='router'>
                 <NavBar qtdItems={qtdItems} setQtdItems={setQtdItems}    />
                 <Switch>
-                    <Route path='Prova-Supera/games'>
+                    <Route path='/Prova-Supera/games'>
                         <ListProducts addCart={AddCart}  key='listproducts' />
 
                    </Route>
-                    <Route path='Prova-Supera/cart'>
+                    <Route path='/Prova-Supera/cart'>
                         <Cart cart={cart} qtdItems={qtdItems} total={total} frete={frete} subTotal={subTotal}  setQtdItems={setQtdItems} setCart={setCart} AddCart={AddCart} RemoveCart={RemoveCart} DeleteItem={DeleteItem} DeleteAll={DeleteAll}/>
                     </Route>
-                    <Route path='Prova-Supera/'>
+                    <Route path='/Prova-Supera/'>
                         <Home/>
                     </Route>
 
