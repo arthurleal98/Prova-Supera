@@ -138,7 +138,7 @@ const App = ()=>{
 
     return(
         <div key='allelements'>            
-            <Router key='router'>
+            <Router key='router' basename={process.env.PUBLIC_URL}>
                 <NavBar qtdItems={qtdItems} setQtdItems={setQtdItems}    />
                 <Switch>
                     <Route path='/games'>
